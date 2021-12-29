@@ -43,7 +43,18 @@ pipeline{
         // Stage3 : Publish the source code to Sonarqube
         stage ('Publish to NEXUS'){
             steps {
-                nexusArtifactUploader artifacts: [[artifactId: 'devops', classifier: '', file: 'target/devops-0.0.3-SNAPSHOT.war', type: 'war']], credentialsId: 'nexus', groupId: 'com.aditya', nexusUrl: '172.20.10.237:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'CI-CD-SNAPSHOT', version: '0.0.3-SNAPSHOT'
+                nexusArtifactUploader artifacts: [
+                [artifactId: '${ArtifactId}', 
+                classifier: '', 
+                file: 'target/devops-0.0.3-SNAPSHOT.war', 
+                type: 'war']], 
+                credentialsId: 'nexus', 
+                groupId: '${GroupId}', 
+                nexusUrl: '172.20.10.237:8081', 
+                nexusVersion: 'nexus3', 
+                protocol: 'http', 
+                repository: 'CI-CD-SNAPSHOT', 
+                version: '${Version}'
                 
             }
             
