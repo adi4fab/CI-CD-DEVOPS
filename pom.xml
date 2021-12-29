@@ -4,7 +4,7 @@
   <groupId>com.aditya</groupId>
   <artifactId>devops</artifactId>
   <packaging>war</packaging>
-  <version>0.0.8.SNAPSHOT</version>
+  <version>0.0.8-SNAPSHOT</version>
   <name>AdityaPR</name>
   <url>http://maven.apache.org</url>
   <dependencies>
