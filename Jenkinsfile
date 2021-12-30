@@ -43,6 +43,10 @@ pipeline{
         // Stage3 : Publish the source code to Sonarqube
         stage ('Publish to NEXUS'){
             steps {
+                script {
+
+                def NexusRepo = Version.endsWith("SNAPSHOT") ? "CI-CD-SNAPSHOT" : "CI-CD-RELEASE"
+
                 nexusArtifactUploader artifacts: [
                 [artifactId: "${ArtifactId}", 
                 classifier: '', 
@@ -53,9 +57,11 @@ pipeline{
                 nexusUrl: '172.20.10.237:8081', 
                 nexusVersion: 'nexus3', 
                 protocol: 'http', 
-                repository: 'CI-CD-SNAPSHOT', 
+                repository: "${NexusRepo}", 
                 version: "${Version}"
-                
+
+                }    
+            
             }
             
         }
