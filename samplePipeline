@@ -1,0 +1,69 @@
+
+pipeline{
+    //Directives
+    agent any
+    tools {
+        maven 'maven'
+    }
+
+    environment{
+       ArtifactId = readMavenPom().getArtifactId()
+       Version = readMavenPom().getVersion()
+       Name = readMavenPom().getName()
+       GroupId = readMavenPom().getGroupId()
+    }
+
+    stages {
+        // Specify various stage with in stages
+
+        // stage 1. Build
+        stage ('Build'){
+            steps {
+                sh 'mvn clean install package'
+            }
+        }
+
+        // Stage2 : Testing
+        stage ('Test'){
+            steps {
+                echo ' testing......'
+
+            }
+        }
+
+        // Stage3 : Publish the source code to Sonarqube
+        stage ('Publish to NEXUS'){
+            steps {
+                nexusArtifactUploader artifacts: 
+                [[artifactId: 'devops', 
+                classifier: '', 
+                file: 'target/devops-0.0.3-SNAPSHOT.war', 
+                type: 'war']], 
+                credentialsId: 'nexus', 
+                groupId: 'com.aditya', 
+                nexusUrl: '172.20.10.237:8081', 
+                nexusVersion: 'nexus3', 
+                protocol: 'http', r
+                epository: 'CI-CD-SNAPSHOT', 
+                version: '0.0.3-SNAPSHOT'
+                
+            }
+            
+        }
+
+        
+        
+    }
+
+}
+
+
+Ansible
+
+controller node - we have the playbooks in /opt folder 
+controler node - we are installing apache tomcat on the managed node 1 which is AnsibleMN-ApacheTomcat usign ROLES
+ansible-galaxy install zaxos.tomcat-ansible-role
+installtomcat.yml - to install tomcat on ansible managed node  1
+
+
+

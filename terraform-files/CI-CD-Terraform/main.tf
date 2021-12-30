@@ -121,7 +121,7 @@ resource "aws_instance" "Jenkins" {
 
 resource "aws_instance" "AnsibleController" {
   ami           = var.ami[1]
-  instance_type = var.instance_type[0]
+  instance_type = var.instance_type[1]
   key_name = "ci-cd-globan"
   vpc_security_group_ids = [aws_security_group.MyLab_Sec_Group.id]
   subnet_id = aws_subnet.MyLab-Subnet1.id
@@ -138,7 +138,7 @@ resource "aws_instance" "AnsibleController" {
 
 resource "aws_instance" "AnsibleManagedNode1" {
   ami           = var.ami[1]
-  instance_type = var.instance_type[0]
+  instance_type = var.instance_type[1]
   key_name = "ci-cd-globan"
   vpc_security_group_ids = [aws_security_group.MyLab_Sec_Group.id]
   subnet_id = aws_subnet.MyLab-Subnet1.id
@@ -154,7 +154,7 @@ resource "aws_instance" "AnsibleManagedNode1" {
 
 resource "aws_instance" "AnsibleMN-DockerHost" {
   ami           = var.ami[1]
-  instance_type = var.instance_type[0]
+  instance_type = var.instance_type[1]
   key_name = "ci-cd-globan"
   vpc_security_group_ids = [aws_security_group.MyLab_Sec_Group.id]
   subnet_id = aws_subnet.MyLab-Subnet1.id
