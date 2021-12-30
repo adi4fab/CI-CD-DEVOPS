@@ -50,7 +50,7 @@ pipeline{
                 nexusArtifactUploader artifacts: [
                 [artifactId: "${ArtifactId}", 
                 classifier: '', 
-                file: 'target/devops-0.0.2-SNAPSHOT.war', 
+                file: "target/${ArtifactId}-${Version}", 
                 type: 'war']], 
                 credentialsId: 'nexus', 
                 groupId: "${GroupId}", 
