@@ -82,7 +82,7 @@ pipeline{
                     ], 
                     usePromotionTimestamp: false, 
                     useWorkspaceInPromotion: false, 
-                    verbose: True)
+                    verbose: true)
                     ])
             
             }
