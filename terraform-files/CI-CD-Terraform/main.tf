@@ -179,3 +179,18 @@ resource "aws_instance" "Nexus" {
     Name = "Nexus-Server"
   }
 }
+
+
+resource "aws_instance" "Sonarqube" {
+  ami           = var.ami[0]
+  instance_type = var.instance_type[1]
+  key_name = "ci-cd-globan"
+  vpc_security_group_ids = [aws_security_group.MyLab_Sec_Group.id]
+  subnet_id = aws_subnet.MyLab-Subnet1.id
+  associate_public_ip_address = true
+  user_data = file("./Userdatascript/InstallSonar.sh")
+
+  tags = {
+    Name = "Sonarqube-Server"
+  }
+}

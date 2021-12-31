@@ -5,7 +5,7 @@ variable "cidr_block" {
 
 variable "ports" {
     type = list(number)
-    default = [22,80,443,8080,8081]
+    default = [22,80,443,8080,8081,9000]
 }
 
 # ubuntu 18.04 [0] - Jenkins, Ansiblecontroller - amzlinux [1], Nexus Ubuntu [2], 
